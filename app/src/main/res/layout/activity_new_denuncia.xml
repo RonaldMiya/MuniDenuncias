@@ -60,22 +60,6 @@
             android:maxLines="1"
             android:maxLength="10"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textSize="20sp"
-            android:text="Usuario"/>
-
-        <EditText
-            android:id="@+id/user_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:inputType="number"
-            android:maxLines="1"
-            android:maxLength="10"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

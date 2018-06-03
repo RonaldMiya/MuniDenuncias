@@ -1,20 +1,12 @@
 package rmiyap.com.munidenuncias.activities;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,20 +19,16 @@ import rmiyap.com.munidenuncias.services.ApiServiceGenerator;
 public class NewReporteActivity extends AppCompatActivity {
 
     private static final String TAG = NewReporteActivity.class.getSimpleName();
-    EditText usuario, titulo, descripcion;
+    private EditText usuario, titulo, descripcion;
+    private Usuario user = LoginActivity.usuairo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reporte);
 
-        usuario = findViewById(R.id.user_input);
         titulo = findViewById(R.id.titulo_input);
         descripcion = findViewById(R.id.contenido_input);
-
-        Usuario user = LoginActivity.usuairo;
-        String user_id = String.valueOf(user.getId());
-        usuario.setText(user_id);
 
     }
 
@@ -48,7 +36,7 @@ public class NewReporteActivity extends AppCompatActivity {
 
         String titulo= this.titulo.getText().toString();
         String contenido = descripcion.getText().toString();
-        String usuarios_id = usuario.getText().toString();
+        String usuarios_id = String.valueOf(user.getId());
 
         if (titulo.isEmpty() || contenido.isEmpty()) {
             Toast.makeText(this, "Todos los campos son requeridos, excepto la imagen", Toast.LENGTH_SHORT).show();

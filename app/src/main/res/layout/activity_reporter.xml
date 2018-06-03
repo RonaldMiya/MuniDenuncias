@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rmiyap.com.munidenuncias.activities.DetailActivity">
+    android:padding="16dp"
+    tools:context="rmiyap.com.munidenuncias.activities.ReporterActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerview"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

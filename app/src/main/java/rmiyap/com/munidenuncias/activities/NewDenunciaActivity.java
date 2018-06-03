@@ -32,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import rmiyap.com.munidenuncias.R;
 import rmiyap.com.munidenuncias.models.ResponseMessage;
+import rmiyap.com.munidenuncias.models.Usuario;
 import rmiyap.com.munidenuncias.services.ApiService;
 import rmiyap.com.munidenuncias.services.ApiServiceGenerator;
 
@@ -45,7 +46,7 @@ public class NewDenunciaActivity extends AppCompatActivity {
     private EditText contenidoInput;
     private EditText ubicacionInput;
     private EditText userInput;
-
+    private Usuario user = LoginActivity.usuairo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class NewDenunciaActivity extends AppCompatActivity {
         tituloInput = findViewById(R.id.titulo_input);
         contenidoInput = findViewById(R.id.contenido_input);
         ubicacionInput = findViewById(R.id.ubicacion_input);
-        userInput = findViewById(R.id.user_input);
+
 
     }
 
@@ -76,7 +77,6 @@ public class NewDenunciaActivity extends AppCompatActivity {
                 return;
             }
 
-            // Creando el directorio de imágenes (si no existe)
             File mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             if (!mediaStorageDir.exists()) {
                 if (!mediaStorageDir.mkdirs()) {
@@ -84,12 +84,10 @@ public class NewDenunciaActivity extends AppCompatActivity {
                 }
             }
 
-            // Definiendo la ruta destino de la captura (Uri)
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
             mediaFileUri = Uri.fromFile(mediaFile);
 
-            // Iniciando la captura
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, mediaFileUri);
             startActivityForResult(intent, CAPTURE_IMAGE_REQUEST);
@@ -104,7 +102,7 @@ public class NewDenunciaActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_REQUEST) {
-            // Resultado en la captura de la foto
+
             if (resultCode == RESULT_OK) {
                 try {
                     Log.d(TAG, "ResultCode: RESULT_OK");
@@ -131,7 +129,7 @@ public class NewDenunciaActivity extends AppCompatActivity {
         String titulo= tituloInput.getText().toString();
         String contenido = contenidoInput.getText().toString();
         String ubicacion = ubicacionInput.getText().toString();
-        String usuarios_id = userInput.getText().toString();
+        String usuarios_id = String.valueOf(user.getId());
 
         if (titulo.isEmpty() || contenido.isEmpty() || ubicacion.isEmpty()) {
             Toast.makeText(this, "Todos los campos son requeridos, excepto la imagen", Toast.LENGTH_SHORT).show();

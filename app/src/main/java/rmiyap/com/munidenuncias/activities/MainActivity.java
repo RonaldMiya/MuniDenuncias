@@ -1,5 +1,6 @@
 package rmiyap.com.munidenuncias.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import retrofit2.Response;
 import rmiyap.com.munidenuncias.R;
 import rmiyap.com.munidenuncias.adapters.DenunciasAdapter;
 import rmiyap.com.munidenuncias.models.Denuncias;
+import rmiyap.com.munidenuncias.models.Login;
 import rmiyap.com.munidenuncias.models.Usuario;
 import rmiyap.com.munidenuncias.services.ApiService;
 import rmiyap.com.munidenuncias.services.ApiServiceGenerator;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (user.getTipo().equalsIgnoreCase("sereno")){
             initialize1();
+            Button button = findViewById(R.id.id_go);
+            button.setVisibility(View.VISIBLE);
         }
 
 
@@ -59,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (user.getTipo().equalsIgnoreCase("ciudadano")) {
-
                     registerDenuncia();
                 } else if (user.getTipo().equalsIgnoreCase("sereno")){
                     registerReporte();
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+//        Usuario user = LoginActivity.usuairo;
 
 
     }
@@ -194,4 +198,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void GoRepo(View view) {
+
+        startActivity(new Intent(MainActivity.this, ReporterActivity.class));
+
+    }
 }

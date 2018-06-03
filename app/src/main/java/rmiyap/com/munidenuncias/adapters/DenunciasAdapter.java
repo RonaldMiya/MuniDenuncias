@@ -5,24 +5,17 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rmiyap.com.munidenuncias.R;
-import rmiyap.com.munidenuncias.activities.DetailActivity;
 import rmiyap.com.munidenuncias.models.Denuncias;
 import rmiyap.com.munidenuncias.services.ApiService;
 
@@ -61,24 +54,17 @@ public class DenunciasAdapter extends RecyclerView.Adapter<DenunciasAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         final Denuncias denu = this.denuncia.get(position);
 
         holder.nombreText.setText(denu.getTitulo());
         holder.ubicacionText.setText(denu.getUbicacion());
 
-        String url = ApiService.API_BASE_URL + "/images/" + denu.getImage();
-        Picasso.with(holder.itemView.getContext()).load(url).into(holder.fotoImage);
+        String url = ApiService.API_BASE_URL + "/images/" + denu.getImagen();
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, DetailActivity.class);
-                intent.putExtra("ID", denu.getId());
-                activity.startActivity(intent);
-            }
-        });
+        Log.i("IMAGE URL", "La ruta es: " + url);
+        Picasso.with(holder.itemView.getContext()).load(url).into(holder.fotoImage);
 
     }
 

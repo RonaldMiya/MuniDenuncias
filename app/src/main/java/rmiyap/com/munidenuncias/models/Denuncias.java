@@ -2,7 +2,7 @@ package rmiyap.com.munidenuncias.models;
 
 public class Denuncias {
 
-    private String image;
+    private String imagen;
     private String fecha;
     private String ubicacion;
     private String contenido;
@@ -58,18 +58,18 @@ public class Denuncias {
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagen(String image) {
+        this.imagen = image;
     }
 
     @Override
     public String toString() {
         return "Denuncias{" +
-                "image='" + image + '\'' +
+                "imagen='" + imagen + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", ubicacion='" + ubicacion + '\'' +
                 ", contenido='" + contenido + '\'' +

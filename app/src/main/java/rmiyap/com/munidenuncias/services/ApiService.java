@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import rmiyap.com.munidenuncias.models.Denuncias;
-import rmiyap.com.munidenuncias.models.Reporte;
+import rmiyap.com.munidenuncias.models.Reportes;
 import rmiyap.com.munidenuncias.models.ResponseMessage;
 import rmiyap.com.munidenuncias.models.Usuario;
 
@@ -25,7 +25,7 @@ public interface ApiService {
     Call<List<Denuncias>> getDenuncias();
 
     @GET("/api/v1/reportes")
-    Call<List<Reporte>> getReporte();
+    Call<List<Reportes>> getReporte();
 
     @GET("/api/v1/denuncias/{id_user}/ver")
     Call<List<Denuncias>> getDenunciasFilter(@Path("id_user") String id_user);
